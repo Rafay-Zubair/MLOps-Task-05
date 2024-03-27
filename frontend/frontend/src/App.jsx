@@ -11,15 +11,16 @@ const App = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://${process.env.BACKEND_SERVICE_URL}/user', {
+      const formData_ = new FormData();
+      formData_.append('username', formData['username']);
+      formData_.append('email', formData['email']);
+
+      const response = await fetch('http://${process.env.BACKEND_SERVICE_URL}/addUser', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: formData_,
       });
-      const data = await response.json();
-      console.log('Response from server:', data);
+      // const data = await response.json();
+      // console.log('Response from server:', data);
     } catch (error) {
       console.error('Error:', error);
     }

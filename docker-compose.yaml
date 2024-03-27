@@ -9,7 +9,7 @@ services:
     - "db-back"
 
   backend-cont:
-    image: "backend-image"
+    build: './backend'
     depends_on:
     - "mongodb"
     environment:
@@ -22,7 +22,7 @@ services:
     - "front-back"
 
   frontend-cont:
-    image: "frontend-image"
+    build: './frontend/frontend'
     depends_on:
     - "backend-cont"
     environment:

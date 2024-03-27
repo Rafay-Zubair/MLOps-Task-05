@@ -34,12 +34,12 @@ def getAllUsers():
 
 @app.route('/addUser', method=["POST"])
 def insertUser():
-  userName = request.form['username']
-  email = request.form['email']
+  userName = request.form.get('username')
+  email = request.form.get('email')
   
   doc_collection.insert_one({ 'uesrname':userName, 'email':email })
   
-  return jsonify({ 'uesrname':userName, 'email':email })
+  return True
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0",port=9090)
