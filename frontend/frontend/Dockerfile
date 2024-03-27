@@ -8,7 +8,7 @@ COPY package*.json ./
 
 RUN npm install
 
-EXPOSE 3000
+EXPOSE 5173
 
 ENV BACKEND_SERVICE_URL="backend-cont:9090"
 
