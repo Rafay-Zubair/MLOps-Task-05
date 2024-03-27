@@ -22,7 +22,7 @@ services:
   frontend-cont:
     build: ./frontend/frontend
     environment:
-      BACKEND_SERVICE_URL: "task05-backend-cont:9090"
+      BACKEND_SERVICE_URL: "backend-cont:9090"
     ports:
     - "80:80"
     networks:
