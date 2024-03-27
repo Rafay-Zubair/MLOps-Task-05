@@ -26,7 +26,7 @@ def hello():
 	greeting = "Hello world!"
 	return greeting
 
-@app.route('/adduser', method=["POST"])
+@app.route('/adduser', methods=["POST"])
 def insertUser():
   userName = request.form.get('username')
   email = request.form.get('email')
