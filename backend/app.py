@@ -20,17 +20,11 @@ doc_collection = db.users
 # 	for doctor in doctors:
 # 		doc_collection.insert_one(doctor)
 
+
 @app.route('/hello')
 def hello():
 	greeting = "Hello world!"
 	return greeting
-
-@app.route('/users', methods=["GET"])
-def getAllUsers():
-	data = list(doc_collection.find())
-	for d in data:
-		d.pop("_id")
-	return jsonify(data)
 
 @app.route('/adduser', method=["POST"])
 def insertUser():
@@ -40,6 +34,15 @@ def insertUser():
   doc_collection.insert_one({ 'uesrname':userName, 'email':email })
   
   return "Data Added"
+
+@app.route('/users', methods=["GET"])
+def getAllUsers():
+	data = list(doc_collection.find())
+	for d in data:
+		d.pop("_id")
+	return jsonify(data)
+
+
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0",port=9090)
