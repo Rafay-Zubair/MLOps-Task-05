@@ -12,8 +12,7 @@ EXPOSE 3000
 
 ENV BACKEND_SERVICE_URL="backend-cont:9090"
 
-COPY ./app.js ./
-COPY ./public/* ./public/
+COPY ./ ./
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
 
