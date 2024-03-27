@@ -8,7 +8,7 @@ services:
     networks:
     - "db-back"
 
-  backend-cont:
+  task05-backend-cont:
     build: './backend'
     depends_on:
     - "mongodb"
@@ -21,12 +21,12 @@ services:
     - "db-back"
     - "front-back"
 
-  frontend-cont:
+  task05-frontend-cont:
     build: './frontend/frontend'
     depends_on:
-    - "backend-cont"
+    - "task05-backend-cont"
     environment:
-      BACKEND_SERVICE_URL: "backend-cont:9090"
+      BACKEND_SERVICE_URL: "task05-backend-cont:9090"
     ports:
     - "5173:5173"
     networks:
