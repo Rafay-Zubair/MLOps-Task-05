@@ -32,14 +32,14 @@ def getAllUsers():
 		d.pop("_id")
 	return jsonify(data)
 
-@app.route('/addUser', method=["POST"])
+@app.route('/adduser', method=["POST"])
 def insertUser():
   userName = request.form.get('username')
   email = request.form.get('email')
   
   doc_collection.insert_one({ 'uesrname':userName, 'email':email })
   
-  return True
+  return "Data Added"
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0",port=9090)

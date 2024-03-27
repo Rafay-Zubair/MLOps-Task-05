@@ -15,7 +15,7 @@ const App = () => {
       formData_.append('username', formData['username']);
       formData_.append('email', formData['email']);
 
-      const response = await fetch('http://${process.env.BACKEND_SERVICE_URL}/addUser', {
+      const response = await fetch('http://${process.env.BACKEND_SERVICE_URL}/adduser', {
         method: 'POST',
         body: formData_,
       });
