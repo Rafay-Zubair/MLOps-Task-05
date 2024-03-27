@@ -30,7 +30,7 @@ services:
     environment:
       BACKEND_SERVICE_URL: "backend-cont:9090"
     ports:
-    - "5173:5173"
+    - "80:80"
     networks:
     - "front-back"
 

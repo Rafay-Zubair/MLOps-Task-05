@@ -1,18 +1,23 @@
-FROM node:20.8.0-alpine3.18
 
-RUN mkdir app
+
+FROM node:latest AS build
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json package-lock.json ./
 
 RUN npm install
 
-EXPOSE 5173
+COPY . .
 
-ENV BACKEND_SERVICE_URL="backend-cont:9090"
+RUN npm run build
 
-COPY ./ ./
 
-CMD ["npm", "run", "dev"]
 
+FROM nginx:alpine
+
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
