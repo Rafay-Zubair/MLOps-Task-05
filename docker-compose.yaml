@@ -9,10 +9,7 @@ services:
     - "db-back"
 
   backend-cont:
-    # build: './backend'
-    image: backend-image
-    depends_on:
-    - "mongodb"
+    build: './backend'
     environment:
       HOST_URL: "mongodb"
       DB_PORT: "27017"
@@ -23,12 +20,9 @@ services:
     - "front-back"
 
   frontend-cont:
-    # build: './frontend/frontend'
-    image: frontend-image
-    depends_on:
-    - "backend-cont"
+    build: ./frontend/frontend
     environment:
-      BACKEND_SERVICE_URL: "backend-cont:9090"
+      BACKEND_SERVICE_URL: "task05-backend-cont:9090"
     ports:
     - "80:80"
     networks:

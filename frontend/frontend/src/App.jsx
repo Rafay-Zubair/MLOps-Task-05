@@ -15,7 +15,7 @@ const App = () => {
       formData_.append('username', formData['username']);
       formData_.append('email', formData['email']);
 
-      const response = await fetch('http://${process.env.BACKEND_SERVICE_URL}/adduser', {
+      const response = await fetch(String("https://studious-carnival-p4v7qgjg7wqhr6q5-9090.app.github.dev//adduser"), {
         method: 'POST',
         body: formData_,
       });
