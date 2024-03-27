@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  mongodb:
+    image: "mongo:4.4.27-rc0"
+    ports:
+    - "2717:27017"
+    networks:
+    - "db-back"
+
+  backend-cont:
+    image: "backend-image"
+    depends_on:
+    - "mongodb"
+    environment:
+      HOST_URL: "mongodb"
+      DB_PORT: "27017"
+    ports:
+    - "9090:9090"
+    networks:
+    - "db-back"
+    - "front-back"
+
+  frontend-cont:
+    image: "frontend-image"
+    depends_on:
+    - "backend-cont"
+    environment:
+      BACKEND_SERVICE_URL: "backend-cont:9090"
+    ports:
+    - "3000:3000"
+    networks:
+    - "front-back"
+
+networks:
+  front-back:
+    driver: bridge
+
+  db-back:
+    driver: bridge
+
